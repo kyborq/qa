@@ -2,9 +2,9 @@
 
 namespace Triangle
 {
-    internal class Program
+    public class Program
     {
-        static string GetTriangleType(double a, double b, double c)
+        private static string GetTriangleType(double a, double b, double c)
         {
             if (a != b && a != c && b != c)
             {
@@ -24,7 +24,7 @@ namespace Triangle
 
         const string error = "неизвестная ошибка";
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             if (args.Length == 3)
             {
