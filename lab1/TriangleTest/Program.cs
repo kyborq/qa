@@ -8,11 +8,11 @@ namespace Triangle.Test
     [TestClass]
     public class TriangleTest
     {
-        const string inputPath = "../../../output.txt";
-        const string outputPath = "../../../input.txt";
+        const string inputPath = "../../../input.txt";
+        const string outputPath = "../../../output.txt";
 
         [TestMethod]
-        public void TestProgram()
+        public static void Main()
         {
             File.WriteAllText(outputPath, string.Empty);
             using StreamWriter outputFile = new StreamWriter(outputPath, true);
