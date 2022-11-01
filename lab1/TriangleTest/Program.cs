@@ -24,7 +24,7 @@ namespace Triangle.Test
 
                 while ((argsLine = inputFile.ReadLine()) != null)
                 {
-                    string[] testArgs = Regex.Replace(argsLine, @"\s+", " ").Split();
+                    string[] testArgs = Regex.Replace(argsLine, @"\s", " ").Split();
                     string expectedResult = inputFile.ReadLine();
 
                     var strWriter = new StringWriter();
@@ -35,6 +35,8 @@ namespace Triangle.Test
 
                     string result = strWriter.ToString();
 
+                    Console.WriteLine(result + " " + expectedResult);
+
                     if (result == expectedResult)
                     {
                         outputFile.WriteLine("Test " + testIndex + ": success");
@@ -44,7 +46,7 @@ namespace Triangle.Test
                         outputFile.WriteLine("Test " + testIndex + ": error");
                     }
 
-                    Assert.AreEqual(result, expectedResult);
+                    Assert.AreEqual(result, expectedResult, $"{testIndex}");
 
                     testIndex++;
                 }

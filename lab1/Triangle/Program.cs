@@ -6,7 +6,11 @@ namespace Triangle
     {
         private static string GetTriangleType(double a, double b, double c)
         {
-            if (a != b && a != c && b != c)
+            if (a + b <= c || a + c <= b || b + c <= a || a < 0 || b < 0 || c < 0)
+            {
+                return "не треугольник";
+            }
+            else if (a != b && a != c && b != c)
             {
                 return "обычный";
             }
@@ -14,45 +18,38 @@ namespace Triangle
             {
                 return "равносторонний";
             }
-            else if (a < 0 || b < 0 || c < 0 || a + b <= c || a + c <= b || b + c <= a)
+            else
             {
-                return "не треугольник";
+                return "равнобедренный";
             }
-
-            return "равнобедренный";
         }
 
         const string error = "неизвестная ошибка";
 
         public static void Main(string[] args)
         {
-            if (args.Length == 3)
+            try
             {
-                try
+                if (args.Length != 3)
                 {
-                    double a = double.Parse(args[0]);
-                    double b = double.Parse(args[1]);
-                    double c = double.Parse(args[2]);
-
-                    if (double.IsInfinity(a) || double.IsInfinity(b) || double.IsInfinity(c))
-                    {
-                        Console.WriteLine(error);
-                    }
-                    else
-                    {
-                        string triangleType = GetTriangleType(a, b, c);
-                        Console.WriteLine(triangleType);
-                    }
-
+                    throw new Exception();
                 }
-                catch (FormatException)
+
+                double a = double.Parse(args[0]);
+                double b = double.Parse(args[1]);
+                double c = double.Parse(args[2]);
+                
+                if (double.IsInfinity(a) || double.IsInfinity(b) || double.IsInfinity(c))
                 {
-                    Console.WriteLine(error);
+                    throw new Exception();
                 }
+
+                string triangleType = GetTriangleType(a, b, c);
+                Console.Write(triangleType);
             }
-            else
+            catch (Exception)
             {
-                Console.WriteLine(error);
+                Console.Write(error);
             }
         }
     }
